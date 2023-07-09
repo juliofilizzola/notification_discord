@@ -27,6 +27,6 @@ func Env() {
 	TokenDiscord = fmt.Sprint(os.Getenv("TOKEN_DISCORD"))
 	WebhookId = fmt.Sprint(os.Getenv("WEBHOOK_ID"))
 	WebhookToken = fmt.Sprint(os.Getenv("WEBHOOK_TOKEN"))
-	Username = fmt.Sprint(os.Getenv("USERNAME"))
+	Username = fmt.Sprint(os.Getenv("USER_NAME"))
 	AvatarURL = fmt.Sprint(os.Getenv("AVATAR_URL"))
 }
