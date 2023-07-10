@@ -1,6 +1,7 @@
 package format
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/bwmarrin/discordgo"
@@ -24,6 +25,8 @@ func ConstructEmbed(data *types.Github) {
 	ConstructorThumbnail(data)
 	ConstructorFooter(&data.Organization)
 
+	fmt.Println(Thumbnail) // todo: fix thumbnail
+
 	// todo melhorar esse codigo para a v2
 	timeSend := time.Now().Format(`2006-01-02 15:04:05`)
 	Embed = append(Embed, &discordgo.MessageEmbed{
@@ -35,7 +38,7 @@ func ConstructEmbed(data *types.Github) {
 		Color:       0,
 		Footer:      Footer,
 		Image:       Image,
-		Thumbnail:   Thumbnail,
+		Thumbnail:   nil,
 		Video:       nil,
 		Provider:    nil,
 		Author:      Author,
