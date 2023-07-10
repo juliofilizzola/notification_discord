@@ -2,12 +2,12 @@ package format
 
 import (
 	"github.com/bwmarrin/discordgo"
-	"github.com/juliofilizzola/bot_discord/initializers"
+	types "github.com/juliofilizzola/bot_discord/internal/struct"
 )
 
-func ConstructorThumbnail() {
+func ConstructorThumbnail(data *types.Github) {
 	Thumbnail = &discordgo.MessageEmbedThumbnail{
-		URL:      initializers.AvatarURL,
+		URL:      data.Organization.AvatarUrl,
 		ProxyURL: "",
 		Width:    40,
 		Height:   60,

@@ -1,10 +1,9 @@
 package main
 
 import (
-	"fmt"
-
+	"github.com/gin-gonic/gin"
+	"github.com/juliofilizzola/bot_discord/controller"
 	"github.com/juliofilizzola/bot_discord/initializers"
-	"github.com/juliofilizzola/bot_discord/internal/send"
 )
 
 func init() {
@@ -12,6 +11,7 @@ func init() {
 }
 
 func main() {
-	send.MessageDiscord()
-	fmt.Println("init server")
+	r := gin.Default()
+	r.POST("/:id/:token", controller.GithubController)
+	r.Run()
 }

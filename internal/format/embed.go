@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/bwmarrin/discordgo"
+	types "github.com/juliofilizzola/bot_discord/internal/struct"
 )
 
 var (
@@ -15,21 +16,21 @@ var (
 	Image     *discordgo.MessageEmbedImage
 )
 
-func ConstructEmbed() {
-	ConstructFields()
-	ConstructorAuthor()
+func ConstructEmbed(data *types.Github) {
+	ConstructFields(data)
+	ConstructorAuthor(&data.Sender)
 
-	ConstructorImg()
-	ConstructorThumbnail()
-	ConstructorFooter()
+	ConstructorImg(data)
+	ConstructorThumbnail(data)
+	ConstructorFooter(&data.Organization)
 
 	// todo melhorar esse codigo para a v2
 	timeSend := time.Now().Format(`2006-01-02 15:04:05`)
 	Embed = append(Embed, &discordgo.MessageEmbed{
-		URL:         "",
+		URL:         data.PullRequest.HtmlUrl,
 		Type:        discordgo.EmbedTypeLink,
-		Title:       "PR 1000",
-		Description: "PR NO REPO",
+		Title:       data.PullRequest.Title,
+		Description: data.PullRequest.Body,
 		Timestamp:   timeSend,
 		Color:       0,
 		Footer:      Footer,

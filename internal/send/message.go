@@ -7,18 +7,19 @@ import (
 	"github.com/bwmarrin/discordgo"
 	"github.com/juliofilizzola/bot_discord/initializers"
 	"github.com/juliofilizzola/bot_discord/internal/format"
+	types "github.com/juliofilizzola/bot_discord/internal/struct"
 )
 
-func MessageDiscord() {
+func MessageDiscord(data *types.Github, webhookId, webhookToken string) {
 	discord, err := startServer()
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	params := format.ConstructParams()
+	params := format.ConstructParams(data)
 
-	webhook, err := discord.WebhookExecute(initializers.WebhookId, initializers.WebhookToken, false, &params)
+	webhook, err := discord.WebhookExecute(webhookId, webhookToken, false, &params)
 	fmt.Println(webhook)
 }
 
