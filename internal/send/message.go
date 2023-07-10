@@ -16,11 +16,16 @@ func MessageDiscord(data *types.Github, webhookId, webhookToken string) {
 	if err != nil {
 		log.Fatal(err)
 	}
+	if data.Action == "labeled" {
 
-	params := format.ConstructParams(data)
+		params := format.ConstructParams(data)
 
-	webhook, err := discord.WebhookExecute(webhookId, webhookToken, false, &params)
-	fmt.Println(webhook)
+		webhook, err := discord.WebhookExecute(webhookId, webhookToken, false, &params)
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println(webhook)
+	}
 }
 
 func startServer() (s *discordgo.Session, err error) {
