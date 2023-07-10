@@ -1,18 +1,16 @@
 package format
 
 import (
-	"fmt"
-
 	"github.com/bwmarrin/discordgo"
 	"github.com/juliofilizzola/bot_discord/initializers"
+	types "github.com/juliofilizzola/bot_discord/internal/struct"
 )
 
-func ConstructParams() discordgo.WebhookParams {
-	ConstructEmbed()
-	fmt.Println(initializers.Username)
+func ConstructParams(data *types.Github) discordgo.WebhookParams {
+	ConstructEmbed(data)
 	return discordgo.WebhookParams{
-		Content:    "Nova PR",
-		Username:   initializers.Username,
+		Content:    "Nova PR no Repositorio: " + data.Repository.Name,
+		Username:   data.PullRequest.Repo.Name,
 		AvatarURL:  initializers.AvatarURL,
 		TTS:        false,
 		Files:      nil,

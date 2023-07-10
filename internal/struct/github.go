@@ -1,8 +1,8 @@
-package _struct
+package types
 
 type User struct {
 	Login        string `json:"login,omitempty"`
-	Id           string `json:"id,omitempty"`
+	Id           int    `json:"id,omitempty"`
 	NodeId       string `json:"node_id,omitempty"`
 	AvatarUrl    string `json:"avatar_url,omitempty"`
 	Url          string `json:"url,omitempty"`
@@ -13,7 +13,7 @@ type User struct {
 }
 
 type Repo struct {
-	Id       string `json:"id,omitempty"`
+	Id       int    `json:"id,omitempty"`
 	NodeId   string `json:"node_id,omitempty"`
 	Name     string `json:"name,omitempty"`
 	FullName string `json:"full_name,omitempty"`
@@ -21,7 +21,7 @@ type Repo struct {
 }
 
 type Repository struct {
-	Repo  `json:"repo"`
+	Repo
 	Owner User `json:"owner"`
 }
 type Label struct {
@@ -36,7 +36,7 @@ type Label struct {
 
 type PullRequest struct {
 	Url                 string  `json:"url,omitempty"`
-	Id                  string  `json:"id,omitempty"`
+	Id                  int     `json:"id,omitempty"`
 	User                User    `json:"user"`
 	NodeId              string  `json:"node_id,omitempty"`
 	HtmlUrl             string  `json:"html_url,omitempty"`
@@ -56,6 +56,7 @@ type PullRequest struct {
 	Assignee            User    `json:"assignee"`
 	Assignees           []User  `json:"assignees,omitempty"`
 	Repo                Repo    `json:"repo"`
+	RequestedReviewers  []User  `json:"requested_reviewers"`
 	Labels              []Label `json:"labels"`
 	Comments            int     `json:"comments,omitempty"`
 	ReviewComments      int     `json:"review_comments,omitempty"`

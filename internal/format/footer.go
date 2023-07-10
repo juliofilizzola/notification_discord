@@ -2,13 +2,13 @@ package format
 
 import (
 	"github.com/bwmarrin/discordgo"
-	"github.com/juliofilizzola/bot_discord/initializers"
+	types "github.com/juliofilizzola/bot_discord/internal/struct"
 )
 
-func ConstructorFooter() {
+func ConstructorFooter(data *types.Organization) {
 	Footer = &discordgo.MessageEmbedFooter{
-		Text:         "This is @360",
-		IconURL:      initializers.AvatarURL,
+		Text:         data.Login,
+		IconURL:      data.AvatarUrl,
 		ProxyIconURL: "",
 	}
 }
