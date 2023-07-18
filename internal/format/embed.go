@@ -9,12 +9,12 @@ import (
 )
 
 var (
-	Embed     []*discordgo.MessageEmbed
-	Author    *discordgo.MessageEmbedAuthor
-	Footer    *discordgo.MessageEmbedFooter
-	Fields    []*discordgo.MessageEmbedField
-	Thumbnail *discordgo.MessageEmbedThumbnail
-	Image     *discordgo.MessageEmbedImage
+	Embed      []*discordgo.MessageEmbed
+	Author     *discordgo.MessageEmbedAuthor
+	Footer     *discordgo.MessageEmbedFooter
+	Fields     []*discordgo.MessageEmbedField
+	Thumbnailk *discordgo.MessageEmbedThumbnail
+	Image      *discordgo.MessageEmbedImage
 )
 
 func ConstructEmbed(data *types.Github) {
@@ -25,7 +25,7 @@ func ConstructEmbed(data *types.Github) {
 	ConstructorThumbnail(data)
 	ConstructorFooter(&data.Organization)
 
-	fmt.Println(Thumbnail) // todo: fix thumbnail
+	fmt.Println(Thumbnailk) // todo: fix thumbnail
 
 	// todo melhorar esse codigo para a v2
 	timeSend := time.Now().Format(`2006-01-02 15:04:05`)

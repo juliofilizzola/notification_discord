@@ -1,6 +1,7 @@
 package format
 
 import (
+	"fmt"
 	"strconv"
 
 	"github.com/bwmarrin/discordgo"
@@ -14,10 +15,22 @@ func ConstructFields(data *types.Github) {
 		Inline: false,
 	}
 
-	assigner := &discordgo.MessageEmbedField{
-		Name:   "Assinado:",
-		Value:  data.PullRequest.Assignee.Login,
-		Inline: false,
+	assignerLen := len(data.PullRequest.Assignee.Login)
+
+	var assigner *discordgo.MessageEmbedField
+	fmt.Println(assignerLen)
+	if assignerLen == 0 {
+		assigner = &discordgo.MessageEmbedField{
+			Name:   "Assinado:",
+			Value:  "Não teve assinatura",
+			Inline: false,
+		}
+	} else {
+		assigner = &discordgo.MessageEmbedField{
+			Name:   "Assinado:",
+			Value:  data.PullRequest.Assignee.Login,
+			Inline: false,
+		}
 	}
 
 	additions := &discordgo.MessageEmbedField{
@@ -25,11 +38,13 @@ func ConstructFields(data *types.Github) {
 		Value:  strconv.Itoa(data.PullRequest.Additions),
 		Inline: true,
 	}
+
 	deletions := &discordgo.MessageEmbedField{
 		Name:   "Codigo deletado",
 		Value:  strconv.Itoa(data.PullRequest.Deletions),
 		Inline: true,
 	}
+
 	commits := &discordgo.MessageEmbedField{
 		Name:   "Commits:",
 		Value:  "[commits](" + data.PullRequest.HtmlUrl + "/commits)",

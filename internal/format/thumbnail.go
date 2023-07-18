@@ -6,7 +6,7 @@ import (
 )
 
 func ConstructorThumbnail(data *types.Github) {
-	Thumbnail = &discordgo.MessageEmbedThumbnail{
+	Thumbnailk = &discordgo.MessageEmbedThumbnail{
 		URL:      data.Organization.AvatarUrl,
 		ProxyURL: "",
 		Width:    40,
