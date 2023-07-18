@@ -9,7 +9,7 @@ func ConstructorImg(data *types.Github) {
 	Image = &discordgo.MessageEmbedImage{
 		URL:      data.Organization.AvatarUrl,
 		ProxyURL: "",
-		Width:    20,
+		Width:    280,
 		Height:   20,
 	}
 }
