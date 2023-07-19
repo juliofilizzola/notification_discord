@@ -1,5 +1,7 @@
 # BOT DISCORD
 
+[![Go](https://github.com/juliofilizzola/bot_discord/actions/workflows/deploy.yml/badge.svg)](https://github.com/juliofilizzola/bot_discord/actions/workflows/deploy.yml)
+
 Olá esse é o bot discord feito em golang
 
 O objetivo dele é criar mensagem no canal do discord referentes a pr criadas no github
