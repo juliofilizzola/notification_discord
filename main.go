@@ -7,7 +7,7 @@ import (
 	"github.com/google/logger"
 	"github.com/juliofilizzola/bot_discord/adpter/input/controller"
 	"github.com/juliofilizzola/bot_discord/adpter/input/controller/routes"
-	"github.com/juliofilizzola/bot_discord/app/services"
+	"github.com/juliofilizzola/bot_discord/application/services"
 	discord2 "github.com/juliofilizzola/bot_discord/config/discord"
 	"github.com/juliofilizzola/bot_discord/config/env"
 )

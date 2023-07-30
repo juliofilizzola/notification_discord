@@ -6,8 +6,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/juliofilizzola/bot_discord/adpter/input/convert"
-	"github.com/juliofilizzola/bot_discord/app/domain"
-	"github.com/juliofilizzola/bot_discord/app/port/input"
+	"github.com/juliofilizzola/bot_discord/application/domain"
+	"github.com/juliofilizzola/bot_discord/application/port/input"
 )
 
 func NewWebhookControllerInterface(serviceInterface input.WebhookDomainService) WebhookControllerInterface {

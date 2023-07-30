@@ -5,7 +5,7 @@ import (
 	"log"
 
 	"github.com/bwmarrin/discordgo"
-	"github.com/juliofilizzola/bot_discord/app/port/input"
+	"github.com/juliofilizzola/bot_discord/application/port/input"
 )
 
 func NewWebhookDomainService(discord *discordgo.Session) input.WebhookDomainService {
