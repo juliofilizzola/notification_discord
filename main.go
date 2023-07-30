@@ -4,7 +4,6 @@ import (
 	"log"
 
 	"github.com/gin-gonic/gin"
-	"github.com/google/logger"
 	"github.com/juliofilizzola/bot_discord/adpter/input/controller"
 	"github.com/juliofilizzola/bot_discord/adpter/input/controller/routes"
 	"github.com/juliofilizzola/bot_discord/application/services"
@@ -17,7 +16,6 @@ func init() {
 }
 
 func main() {
-	logger.Info("init service")
 	r := gin.Default()
 
 	webController := initDependencies()
