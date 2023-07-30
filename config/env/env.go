@@ -1,4 +1,4 @@
-package initializers
+package env
 
 import (
 	"fmt"
@@ -11,8 +11,6 @@ import (
 var (
 	Port         = ""
 	TokenDiscord = ""
-	WebhookId    = ""
-	WebhookToken = ""
 	AvatarURL    = ""
 	Username     = ""
 )
@@ -25,8 +23,6 @@ func Env() {
 	}
 	Port = fmt.Sprint(os.Getenv("PORT"))
 	TokenDiscord = fmt.Sprint(os.Getenv("TOKEN_DISCORD"))
-	WebhookId = fmt.Sprint(os.Getenv("WEBHOOK_ID"))
-	WebhookToken = fmt.Sprint(os.Getenv("WEBHOOK_TOKEN"))
 	Username = fmt.Sprint(os.Getenv("USER_NAME"))
 	AvatarURL = fmt.Sprint(os.Getenv("AVATAR_URL"))
 }
