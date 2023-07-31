@@ -8,7 +8,6 @@ import (
 	"github.com/juliofilizzola/bot_discord/adpter/input/convert"
 	"github.com/juliofilizzola/bot_discord/application/domain"
 	"github.com/juliofilizzola/bot_discord/application/port/input"
-
 )
 
 func NewWebhookControllerInterface(serviceInterface input.WebhookDomainService) WebhookControllerInterface {
@@ -29,12 +28,16 @@ func (wb *webhookControllerInterface) CreatePR(ctx *gin.Context) {
 	var body domain.Github
 
 	err := ctx.Bind(&body)
-
+	// ! this is alert from validation err.
 	if err != nil {
 		fmt.Println("err", err)
-		return
+		ctx.JSON(http.StatusBadRequest, gin.H{
+			"result": "err from convert body",
+		})
 	}
+
 	webhookId := ctx.Param("id")
+
 	webhookToken := ctx.Param("token")
 
 	dataGithub := convert.ConvertDomainGithub(&body)
