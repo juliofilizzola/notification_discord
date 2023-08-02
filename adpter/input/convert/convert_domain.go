@@ -1,6 +1,7 @@
 package convert
 
 import (
+	"fmt"
 	"strconv"
 	"time"
 
@@ -10,6 +11,14 @@ import (
 )
 
 func ConvertDomainGithub(githubDomain *domain.Github) discordgo.WebhookParams {
+	var reviews []string
+
+	if len(githubDomain.PullRequest.RequestedReviewers) > 0 {
+		for _, value := range githubDomain.PullRequest.RequestedReviewers {
+			reviews = append(reviews, value.Login+", ")
+		}
+	}
+
 	embed := &discordgo.MessageEmbed{
 		URL:         githubDomain.PullRequest.HtmlUrl,
 		Type:        discordgo.EmbedTypeLink,
@@ -71,25 +80,15 @@ func ConvertDomainGithub(githubDomain *domain.Github) discordgo.WebhookParams {
 				Value:  "[commits](" + githubDomain.PullRequest.HtmlUrl + "/commits)",
 				Inline: false,
 			},
+			{
+				Name:   "Reviews",
+				Value:  returnString(reviews),
+				Inline: false,
+			},
 		},
 	}
 
-	if len(githubDomain.PullRequest.RequestedReviewers) > 0 {
-		for _, value := range githubDomain.PullRequest.RequestedReviewers {
-			embed.Fields = append(embed.Fields, &discordgo.MessageEmbedField{
-				Name:   "Review :",
-				Value:  value.Login,
-				Inline: false,
-			})
-		}
-	} else {
-		embed.Fields = append(embed.Fields, &discordgo.MessageEmbedField{
-			Name:   "Review :",
-			Value:  "sem review...",
-			Inline: false,
-		})
-	}
-
+	fmt.Println(reviews)
 	return discordgo.WebhookParams{
 		Content:    "Nova PR no Repositorio: " + githubDomain.Repository.Name,
 		Username:   env.Username,
@@ -108,4 +107,17 @@ func ConvertDomainGithub(githubDomain *domain.Github) discordgo.WebhookParams {
 		},
 		Flags: 0,
 	}
+}
+
+func returnString(reviews []string) string {
+	var test string
+	if len(reviews) == 0 {
+		return "Sem reviews"
+	}
+
+	for _, value := range reviews {
+		test += value
+	}
+
+	return test
 }
