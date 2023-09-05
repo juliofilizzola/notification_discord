@@ -44,9 +44,9 @@ func ConvertDomainGithub(githubDomain *domain.Github) discordgo.WebhookParams {
 			Height:   20,
 		},
 		Author: &discordgo.MessageEmbedAuthor{
-			URL:          githubDomain.Sender.HtmlUrl,
-			Name:         githubDomain.Sender.Login,
-			IconURL:      githubDomain.Sender.AvatarUrl,
+			URL:          githubDomain.PullRequest.User.HtmlUrl,
+			Name:         githubDomain.PullRequest.User.Login,
+			IconURL:      githubDomain.PullRequest.User.AvatarUrl,
 			ProxyIconURL: "",
 		},
 		Fields: []*discordgo.MessageEmbedField{
