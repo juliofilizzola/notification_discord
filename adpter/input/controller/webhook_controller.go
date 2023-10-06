@@ -40,7 +40,7 @@ func (wb *webhookControllerInterface) CreatePR(ctx *gin.Context) {
 
 	webhookToken := ctx.Param("token")
 
-	dataGithub := convert.ConvertDomainGithub(&body)
+	dataGithub := convert.DomainGithub(&body)
 
 	result := wb.service.Send(&dataGithub, webhookId, webhookToken, body.Action)
 
