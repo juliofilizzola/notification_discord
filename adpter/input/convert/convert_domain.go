@@ -10,7 +10,7 @@ import (
 	"github.com/juliofilizzola/bot_discord/config/env"
 )
 
-func ConvertDomainGithub(githubDomain *domain.Github) discordgo.WebhookParams {
+func DomainGithub(githubDomain *domain.Github) discordgo.WebhookParams {
 	var reviews []string
 
 	if len(githubDomain.PullRequest.RequestedReviewers) > 0 {
@@ -50,6 +50,16 @@ func ConvertDomainGithub(githubDomain *domain.Github) discordgo.WebhookParams {
 			ProxyIconURL: "",
 		},
 		Fields: []*discordgo.MessageEmbedField{
+			{
+				Name:   "Branch:",
+				Value:  githubDomain.PullRequest.Head.Ref,
+				Inline: false,
+			},
+			{
+				Name:   "Merge into:",
+				Value:  githubDomain.PullRequest.Base.Ref + " from " + githubDomain.PullRequest.Head.Ref,
+				Inline: false,
+			},
 			{
 				Name:   "Status:",
 				Value:  githubDomain.PullRequest.State,
