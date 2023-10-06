@@ -12,6 +12,14 @@ type User struct {
 	Type         string `json:"type,omitempty"`
 }
 
+type Base struct {
+	Label string `json:"label"`
+	Ref   string `json:"ref"`
+	Sha   string `json:"sha"`
+	User
+	Repo
+}
+
 type Repo struct {
 	Id       int    `json:"id,omitempty"`
 	NodeId   string `json:"node_id,omitempty"`
@@ -24,6 +32,14 @@ type Repository struct {
 	Repo
 	Owner User `json:"owner"`
 }
+
+type Head struct {
+	Label string `json:"label"`
+	Ref   string `json:"ref"`
+	Sha   string `json:"sha"`
+	User
+}
+
 type Label struct {
 	Id          int    `json:"id,omitempty"`
 	NodeId      string `json:"node_id,omitempty"`
@@ -38,6 +54,8 @@ type PullRequest struct {
 	Url                 string  `json:"url,omitempty"`
 	Id                  int     `json:"id,omitempty"`
 	User                User    `json:"user"`
+	Base                Base    `json:"base"`
+	Head                Head    `json:"head"`
 	NodeId              string  `json:"node_id,omitempty"`
 	HtmlUrl             string  `json:"html_url,omitempty"`
 	DiffUrl             string  `json:"diff_url,omitempty"`
@@ -71,6 +89,7 @@ type PullRequest struct {
 	CommentsUrl         string  `json:"comments_url,omitempty"`
 	StatusesUrl         string  `json:"statuses_url,omitempty"`
 }
+
 type Organization struct {
 	Id               int    `json:"id,omitempty"`
 	Login            string `json:"login,omitempty"`
