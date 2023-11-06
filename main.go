@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/gin-gonic/gin"
@@ -9,6 +10,9 @@ import (
 	"github.com/juliofilizzola/bot_discord/application/services"
 	discord2 "github.com/juliofilizzola/bot_discord/config/discord"
 	"github.com/juliofilizzola/bot_discord/config/env"
+	"github.com/juliofilizzola/bot_discord/db"
+	_ "github.com/lib/pq"
+	_ "gorm.io/driver/postgres"
 )
 
 func init() {
@@ -17,10 +21,12 @@ func init() {
 
 func main() {
 	r := gin.Default()
+	fmt.Print(env.DatabaseURL)
 
+	fmt.Printf(env.DbType)
 	webController := initDependencies()
 	routes.InitRoutes(&r.RouterGroup, webController)
-
+	db.ConnectDB()
 	if err := r.Run(env.Port); err != nil {
 		log.Fatal(err)
 	}
